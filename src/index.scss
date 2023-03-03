@@ -1,2 +1,84 @@
 @import '~sass-reset';
 
+* {
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+#root {
+    position: relative;
+}
+
+.container {
+    min-width: 390px;
+    padding: 0 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.header {
+    padding: 1.5rem 0;
+    height: 3.16rem;
+    background: rgb(61, 78, 169);
+    background: linear-gradient(180deg, rgb(221 128 193) 0%, rgb(217 171 222) 100%);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+
+    &__logo {
+        background-image: url(../public/assets/helados.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 2.5rem;
+        width: 2.5rem;
+        margin-right: 1.2rem;
+    }
+
+    &__title {
+        font-size: 1.2rem;
+    }
+}
+
+footer {
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    background-color: #d795d0;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: white;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+
+
+@media all and (min-width: 76rem) {
+    .container {
+        max-width: 76rem;
+    }
+    
+}
