@@ -2,7 +2,11 @@
 
 * {
     font-family: 'Lato', sans-serif;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.5px;    
+}
+
+body{
+    background-color: #f6f3efa6;
 }
 
 #root {
@@ -31,11 +35,15 @@
     align-items: center;
 }
 
+.shadow{
+    opacity: 0.5;    
+}
+
 .header {
     padding: 1.5rem 0;
     height: 3.16rem;
     background: rgb(61, 78, 169);
-    background: linear-gradient(180deg, rgb(221 128 193) 0%, rgb(217 171 222) 100%);
+    background: linear-gradient(180deg, #dc8a53, #e2a57c);
     position: fixed;
     z-index: 1;
     top: 0;
@@ -51,11 +59,88 @@
         background-size: cover;
         height: 2.5rem;
         width: 2.5rem;
-        margin-right: 1.2rem;
+        transform: rotate(40deg);
+        margin-right: 1rem;       
     }
 
     &__title {
         font-size: 1.2rem;
+    }
+}
+
+.home {    
+    
+}
+
+.iceCreams-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 4.5rem;
+    gap: 1rem 1rem;
+}
+
+.iceCream-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #dc8449;
+    width: 160px;
+
+    &__img {
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+    }
+    &__top {
+        position: absolute;
+        height: 50%;
+        top: 0rem;
+        left: 0rem;
+        padding: 0.6rem;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        display: flex;
+        justify-content: left;
+    }
+    &__liked {
+        height: 1.5rem;
+        width: 1.5rem;
+        background-image: url(../public/assets/heart.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    &__liked--default {
+        background-image: url(../public/assets/heartEmpty.png);
+    }
+
+    &__bottom {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        padding: 0.4rem 1rem;
+        background-color: #e6e6e6;
+    }
+    &__title {
+        font-weight: 500;
+        height: 2.5rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    &__availability {
+        margin-top: 0.6rem;
+        margin-bottom: 0.8rem;
+        font-size: 0.8rem;
+        text-align: center;
     }
 }
 
@@ -65,7 +150,7 @@ footer {
     align-items: center;
     justify-content: center;
     height: 2.5rem;
-    background-color: #d795d0;
+    background-color: #e2a57c;
     font-size: 0.9rem;
     font-style: italic;
     color: white;
@@ -75,10 +160,8 @@ footer {
     text-align: center;
 }
 
-
 @media all and (min-width: 76rem) {
     .container {
         max-width: 76rem;
     }
-    
 }
