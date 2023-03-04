@@ -4,6 +4,8 @@ export function Filters() {
     const [selectedSort, setSelectedSort] = useState('top-sale');
     const [selectedFilter, setSelectedFilter] = useState('all');
 
+    console.log(selectedSort, selectedFilter);
+
     return (
         <div className="filters">
             <label className="filters__label">
