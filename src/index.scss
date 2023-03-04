@@ -2,10 +2,10 @@
 
 * {
     font-family: 'Lato', sans-serif;
-    letter-spacing: 0.5px;    
+    letter-spacing: 0.5px;
 }
 
-body{
+body {
     background-color: #f6f3efa6;
 }
 
@@ -35,10 +35,6 @@ body{
     align-items: center;
 }
 
-.shadow{
-    opacity: 0.5;    
-}
-
 .header {
     padding: 1.5rem 0;
     height: 3.16rem;
@@ -60,16 +56,12 @@ body{
         height: 2.5rem;
         width: 2.5rem;
         transform: rotate(40deg);
-        margin-right: 1rem;       
+        margin-right: 1rem;
     }
 
     &__title {
         font-size: 1.2rem;
     }
-}
-
-.home {    
-    
 }
 
 .iceCreams-list {
@@ -141,6 +133,95 @@ body{
         margin-bottom: 0.8rem;
         font-size: 0.8rem;
         text-align: center;
+    }
+}
+
+.modal {
+    min-width: 390px;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000089;
+    padding: 1rem 0.75rem;
+    display: flex;
+    justify-content: center;
+}
+
+.details-modal {
+    background-color: #e6e6e6;
+    position: relative;
+    border-radius: 0.4rem;
+    padding: 1.2rem 1.5rem;
+    width: 100%;
+    max-height: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    overflow-y: auto;
+    color: #bd713e;
+    min-width: 300px;
+
+    &__top {
+        display: flex;
+    }
+
+    &__like {
+        margin-right: 1rem;
+    }
+
+    &__close {
+        height: 1.5rem;
+        width: 1.5rem;
+        color: #854300;
+        margin-left: auto;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #dc8449;
+    }
+
+    &__img {
+        margin-top: 1rem;
+        border-radius: 1rem;
+        width: 100%;
+        max-width: 30rem;
+    }
+
+    h3 {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: #dc8449;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    &__description {
+        margin-top: 0.7rem;
+    }
+
+    &__ingredient {
+        list-style-type: circle;
+        list-style-position: inside;
+    }
+
+    &__ingredient-span {
+        position: relative;
+        left: -0.5rem;
+    }
+
+    &__original-price {
+        text-decoration: line-through;
+    }
+
+    &__sale-price {
+        margin-left: 0.5rem;
     }
 }
 

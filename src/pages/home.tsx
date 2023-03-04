@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { DetailsModal } from '../components/details-modal/details-modal';
 import { IceCreamCard } from '../components/iceCream-card/iceCream-card';
 
 export default function Home() {
@@ -104,7 +105,7 @@ export default function Home() {
             },
         },
         {
-            id: '08c02278-892c-48b7-a6f7-d0101e330f5d',
+            id: '08c02278-892c-48b7a6f7-d0101e330f5d',
             colors: ['#F5DEB3', '#8B4513'],
             description:
                 "Get ready for a cookie dough lover's dream with our Cookie Dough Craze ice cream, made with creamy vanilla ice cream, chunks of cookie dough, and loads of chocolate chips. It's a classic combination that will never go out of style. Try it now!",
@@ -125,7 +126,7 @@ export default function Home() {
         },
     ];
 
-    const [modal, SetModal] = useState('');
+    const [modal, SetModal] = useState<string | null>('');
 
     return (
         <main className="home">
@@ -143,6 +144,15 @@ export default function Home() {
                 ) : (
                     <p className="home__no-results">Sin resultados</p>
                 )}
+
+                {modal !== null ? (
+                    <div className="modal">
+                        <DetailsModal
+                            id={modal}
+                            closeModal={SetModal}
+                        ></DetailsModal>
+                    </div>
+                ) : null}
             </div>
         </main>
     );

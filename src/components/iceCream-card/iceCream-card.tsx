@@ -6,7 +6,7 @@ export function IceCreamCard({
     openModal,
 }: {
     iceCream: IcecreamStructure;
-    openModal: Dispatch<SetStateAction<string>>;
+    openModal: Dispatch<SetStateAction<string|null>>;
 }) {
     const liked = ['08c02278-892c-48b7-a6f7-d0101e330f5d'];
 
@@ -18,13 +18,13 @@ export function IceCreamCard({
         //
     };
 
-    const availability = iceCream.onSale.isOnSale ? 'On Sale' : 'Sold Out';
+    const availability = iceCream.onSale.isOnSale
+        ? iceCream.onSale.finalPrice
+        : iceCream.price;
 
     return (
         <li
-            className={`iceCream-card ${
-                iceCream.onSale.isOnSale ? '' : 'shadow'
-            }`}
+            className="iceCream-card"
         >
             <img
                 className="iceCream-card__img"
