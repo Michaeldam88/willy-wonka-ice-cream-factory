@@ -6,7 +6,7 @@ export function IceCreamCard({
     openModal,
 }: {
     iceCream: IcecreamStructure;
-    openModal: Dispatch<SetStateAction<string|null>>;
+    openModal: Dispatch<SetStateAction<string | null>>;
 }) {
     const liked = ['08c02278-892c-48b7-a6f7-d0101e330f5d'];
 
@@ -23,11 +23,14 @@ export function IceCreamCard({
         : iceCream.price;
 
     return (
-        <li
-            className="iceCream-card"
-        >
+        <li className="iceCream-card">
             <img
                 className="iceCream-card__img"
+                onClick={() => {
+                    if (iceCream.id) {
+                        openModal(iceCream.id);
+                    }
+                }}
                 src={
                     iceCream.image
                         ? `https://heytrade-ice-creams.herokuapp.com${iceCream.image}`
@@ -48,6 +51,12 @@ export function IceCreamCard({
                         onClick={() => handleClickAddLiked()}
                     ></button>
                 )}
+
+                {iceCream.onSale.isOnSale ? (
+                    <span className="iceCream-card__discount">
+                        -{iceCream.onSale.discount * 100}%
+                    </span>
+                ) : null}
             </div>
 
             <div

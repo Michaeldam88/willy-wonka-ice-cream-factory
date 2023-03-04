@@ -47,8 +47,7 @@ export function DetailsModal({
     };
 
     return (
-        <div className="details-modal">
-            <div className="mobile-view">
+        <div className="details-modal">            
                 <div className="details-modal__top">
                     {liked.some((element) => element === details.id) ? (
                         <button
@@ -65,7 +64,7 @@ export function DetailsModal({
                     <h2 className="details-modal__title">{details.name}</h2>
 
                     <button
-                        className="details-modal__close material-symbols-outlined"
+                        className="details-modal__close"
                         onClick={() => {
                             closeModal(null);
                             setDetails({});
@@ -117,10 +116,5 @@ export function DetailsModal({
                     </p>
                 )}
             </div>
-
-            <div className="desktop-view">
-                <div className="details-modal__main-info"></div>
-            </div>
-        </div>
     );
 }
