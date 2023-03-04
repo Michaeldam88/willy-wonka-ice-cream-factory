@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DetailsModal } from '../components/details-modal/details-modal';
+import { Filters } from '../components/filters/filters';
 import { IceCreamCard } from '../components/iceCream-card/iceCream-card';
 
 export default function Home() {
@@ -151,6 +152,7 @@ export default function Home() {
     return (
         <main className="home">
             <div className="container flex-column">
+                <Filters/>
                 {iceCreamList.length > 0 ? (
                     <ul className="iceCreams-list">
                         {iceCreamList.map((element) => (
