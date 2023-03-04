@@ -15,7 +15,7 @@ Technologies used for the development:
 -   Typescrip,
 -   Sass with BEM
 -   Jest
--   Git Action and Sonar for quality check (url)
+-   Git Action and Sonar for quality check (https://sonarcloud.io/project/overview?id=Michaeldam88_willy-wonka-ice-cream-factory)
 
 Roadmap:
 -
@@ -26,4 +26,4 @@ A little preview:
 ![This is an image](url)
 
 
-Try it here: url
+Try it here: https://willy-wonka-ice-cream-factory.netlify.app/
