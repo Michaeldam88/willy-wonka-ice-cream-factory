@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
-import { IcecreamStructure } from '../../types/icecreamStructure';
+import { IceCreamStructure } from '../../types/icecreamStructure';
 
 export function IceCreamCard({
     iceCream,
     openModal,
 }: {
-    iceCream: IcecreamStructure;
+    iceCream: IceCreamStructure;
     openModal: Dispatch<SetStateAction<string | null>>;
 }) {
     const liked = ['08c02278-892c-48b7-a6f7-d0101e330f5d'];
@@ -40,6 +40,12 @@ export function IceCreamCard({
             />
 
             <div className="iceCream-card__top">
+                {iceCream.onSale.isOnSale ? (
+                    <span className="iceCream-card__discount">
+                        -{iceCream.onSale.discount * 100}%
+                    </span>
+                ) : null}
+
                 {liked.some((element) => element === iceCream.id) ? (
                     <button
                         className="iceCream-card__liked"
@@ -51,12 +57,6 @@ export function IceCreamCard({
                         onClick={() => handleClickAddLiked()}
                     ></button>
                 )}
-
-                {iceCream.onSale.isOnSale ? (
-                    <span className="iceCream-card__discount">
-                        -{iceCream.onSale.discount * 100}%
-                    </span>
-                ) : null}
             </div>
 
             <div
