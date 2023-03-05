@@ -22,4 +22,15 @@ export class IceCreamsApi {
 
         return result.json();
     }
+
+    async getIceCreamsDetails(id: string) {
+        const result = await fetch(
+            `https://heytrade-ice-creams.herokuapp.com/api/v1/icecreams/${id}`
+        );
+
+        if (!result.ok)
+            throw new Error(`Error ${result.status}: ${result.statusText}`);
+
+        return result.json();
+    }
 }
