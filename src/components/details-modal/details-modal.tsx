@@ -1,30 +1,37 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect} from 'react';
 import { useIceCreams } from '../../hooks/use.iceCreams';
+import { useLocalStorage } from '../../hooks/use.LocalStorage';
 
 export function DetailsModal({
     id,
     closeModal,
+    liked,
+    setLiked,
 }: {
     id: string;
     closeModal: Dispatch<SetStateAction<string | null>>;
+    liked: string[];
+    setLiked: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
     const { getIceCreamsDetails, iceCreamDetails } = useIceCreams();
-
-    const liked = [
-        '05f5fe4d-7160-4f61-8139-dd34bf9dac1c',
-        '00cf7c9e-34b2-4b64-a4fa-287598d1a6a3',
-    ];
+    const { setItem } = useLocalStorage();
 
     useEffect(() => {
         getIceCreamsDetails(id);
-    }, [getIceCreamsDetails, id]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleClickRemoveLiked = () => {
-        //
+        const newList = liked.filter((element) => element !== id);
+        setItem('liked', JSON.stringify(newList));
+        setLiked(newList);
     };
 
     const handleClickAddLiked = () => {
-        //
+        const newList = liked;
+        newList.push(id);
+        setLiked(newList);
+        setItem('liked', JSON.stringify(liked));
     };
 
     return (

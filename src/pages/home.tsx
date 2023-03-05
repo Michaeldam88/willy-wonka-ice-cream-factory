@@ -13,6 +13,8 @@ export default function Home() {
     }, [page]);
 
     const [modal, SetModal] = useState<string | null>(null);
+    const [liked, setLiked] = useState<string[]>([]);
+
     return (
         <main className="home">
             <div className="container flex-column">
@@ -24,6 +26,8 @@ export default function Home() {
                                 key={element.id}
                                 iceCream={element}
                                 openModal={SetModal}
+                                liked={liked}
+                                setLiked={setLiked}
                             />
                         ))}
                     </ul>
@@ -42,6 +46,8 @@ export default function Home() {
                         <DetailsModal
                             id={modal}
                             closeModal={SetModal}
+                            liked={liked}
+                            setLiked={setLiked}
                         ></DetailsModal>
                     </div>
                 ) : null}
