@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #f6f3efa6;
+    background-color: #f6f3efde;
 }
 
 #root {
@@ -79,7 +79,7 @@ body {
     height: 3rem;
     padding-top: 0.7rem;
     color: #dc8449;
-    background-color: #f9f7f4;
+    background-color: #f6f3ef;
     &__label {
         margin-right: 1.5rem;
     }
@@ -105,13 +105,13 @@ body {
     flex-direction: column;
     position: relative;
     color: #dc8449;
-    background-color: #e6e6e6;
     width: 46%;
     border-radius: 1rem;
     margin-bottom: 1.2rem;
     margin-right: 4%;
     &__img {
-        margin-top: 1rem;
+        border-radius: 1rem;
+        
     }
     &__top {
         position: absolute;
@@ -137,8 +137,11 @@ body {
 
     &__discount {
         font-weight: 600;
-        font-size: 0.95rem;
-        color: #e57d36;
+        font-size: 0.8rem;
+        padding: 0.2rem;
+        border-radius: 0.2rem;
+        color: white;
+        background-color: #ff585f;
     }
 
     &__bottom {
@@ -152,7 +155,8 @@ body {
     }
     &__title {
         font-weight: 500;
-        height: 2.5rem;
+        margin-top: 0.4rem;
+        margin-bottom: 0.1rem;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -171,7 +175,8 @@ body {
 
 .pagination {
     display: flex;
-    align-self: center;
+    align-items: center;
+    align-self: center;    
     color: #9e643c;
     font-size: 1.1rem;
     padding: 0.3rem;
@@ -180,12 +185,14 @@ body {
     }
     &__changePage {
         font-weight: 600;
-        font-size: 1.3rem;
-        line-height: 1.1rem;
+        font-size: 1.3rem;        
+        padding: 0.2rem 0.4rem;
         color: #dc8449;
+        background-color: #f6eee1;
+        border-radius: 1rem;
     }
     &__changePage--disabled {
-        color: #d4b9a7;
+        color: #d4b9a7c7;
     }
     &__changePage--disabled:hover {
         cursor: auto;
@@ -207,7 +214,7 @@ body {
 }
 
 .details-modal {
-    background-color: #e6e6e6;
+    background-color: #f6f3ef;
     position: relative;
     border-radius: 0.4rem;
     padding: 1.2rem 1.5rem;
@@ -220,7 +227,7 @@ body {
     overflow-y: auto;
     color: #9e643c;
     min-width: 300px;
-    max-width: 50rem;
+    max-width: 40rem;
 
     &__top {
         display: flex;
@@ -250,6 +257,7 @@ body {
 
     &__img {
         margin-top: 1rem;
+        margin-bottom: 0.5rem;
         border-radius: 1rem;
         width: 100%;
         max-width: 25rem;
@@ -257,26 +265,27 @@ body {
     }
 
     h3 {
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.6rem;
         color: #dc8449;
         font-size: 1.2rem;
         font-weight: 600;
     }
 
     &__description {
-        margin-top: 0.7rem;
+        margin-top: 0;
     }
 
     &__ingredient {
-        list-style-type: circle;
-        list-style-position: inside;
-    }
-
-    &__ingredient-span {
-        position: relative;
-        left: -0.5rem;
-    }
+        color:#dc8449;
+        background-color: #ffffffde;
+        border: 2px solid #dc8449;
+        border-radius: 0.9rem;
+        margin-bottom: 0.5rem;
+        padding: 0.3rem 0.6rem;
+        line-height: 1.2rem;
+        width: fit-content;
+    }    
 
     &__price {
         margin-bottom: 0;

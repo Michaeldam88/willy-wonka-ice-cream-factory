@@ -1,24 +1,37 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect} from 'react';
+import { useLocalStorage } from '../../hooks/use.LocalStorage';
 import { IceCreamStructure } from '../../types/icecreamStructure';
 
 export function IceCreamCard({
     iceCream,
     openModal,
+    liked,
+    setLiked,
 }: {
     iceCream: IceCreamStructure;
     openModal: Dispatch<SetStateAction<string | null>>;
+    liked: string[];
+    setLiked: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
-    const liked = [
-        '05f5fe4d-7160-4f61-8139-dd34bf9dac1c',
-        '00cf7c9e-34b2-4b64-a4fa-287598d1a6a3',
-    ];
+    const { setItem, getItem } = useLocalStorage();
+
+    useEffect(() => {
+        const storedInfo = getItem('liked');
+        if (storedInfo) setLiked(JSON.parse(storedInfo));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleClickRemoveLiked = () => {
-        //
+        const newList = liked.filter((element) => element !== iceCream.id);
+        setItem('liked', JSON.stringify(newList));
+        setLiked(newList);
     };
 
     const handleClickAddLiked = () => {
-        //
+        const newList = liked;
+        newList.push(iceCream.id);
+        setLiked(newList);
+        setItem('liked', JSON.stringify(liked));
     };
 
     const availability = iceCream.onSale.isOnSale
