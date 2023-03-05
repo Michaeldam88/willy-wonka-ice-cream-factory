@@ -1,6 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useIceCreams } from '../../hooks/use.iceCreams';
-import { IceCreamStructure } from '../../types/icecreamStructure';
 
 export function DetailsModal({
     id,
@@ -17,9 +16,8 @@ export function DetailsModal({
     ];
 
     useEffect(() => {
-        getIceCreamsDetails(id);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        getIceCreamsDetails(id);        
+    }, [getIceCreamsDetails, id]);
 
     const handleClickRemoveLiked = () => {
         //
@@ -28,7 +26,7 @@ export function DetailsModal({
     const handleClickAddLiked = () => {
         //
     };
-
+    
     return (
         <div className="details-modal">
             <div className="details-modal__top">

@@ -3,8 +3,7 @@ import { IceCreamsApi } from '../services/iceCreamsApi';
 import { IceCreamStructure } from '../types/icecreamStructure';
 
 export type UseIceCreams = {
-    iceCreams: Array<IceCreamStructure>;
-    page: number;
+    iceCreams: Array<IceCreamStructure>;    
     totItems: number;
     totPage: number;
     iceCreamDetails: Partial<IceCreamStructure>;
@@ -14,16 +13,14 @@ export type UseIceCreams = {
         filter: string,
         sort: string
     ) => Promise<void>;
-    getIceCreamsDetails: (id: string) => Promise<void>;
-    setPage: React.Dispatch<React.SetStateAction<number>>;
+    getIceCreamsDetails: (id: string) => Promise<void>;    
 };
 
 export function useIceCreams(): UseIceCreams {
     const iceCreamsApi = useMemo(() => new IceCreamsApi(), []);
 
     const [iceCreams, setIceCreams] = useState([]);
-    const [iceCreamDetails, setIceCreamDetails] = useState({});
-    const [page, setPage] = useState(1);
+    const [iceCreamDetails, setIceCreamDetails] = useState({});    
     const [totPage, setTotalPage] = useState(1);
     const [totItems, setTotalItems] = useState(0);
 
@@ -71,9 +68,7 @@ export function useIceCreams(): UseIceCreams {
         getIceCreams,
         getFilteredIceCreams,
         getIceCreamsDetails,
-        setPage,
-        iceCreams,
-        page,
+        iceCreams,        
         totItems,
         totPage,
         iceCreamDetails

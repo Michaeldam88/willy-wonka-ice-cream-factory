@@ -5,7 +5,9 @@ import { IceCreamCard } from '../components/iceCream-card/iceCream-card';
 import { useIceCreams } from '../hooks/use.iceCreams';
 
 export default function Home() {
-    const { getIceCreams, iceCreams } = useIceCreams();
+    const { getIceCreams, iceCreams, getFilteredIceCreams } = useIceCreams();
+
+    const [page, SetPage] = useState<number>(1);
 
     useEffect(() => {
         getIceCreams(1);
@@ -13,10 +15,14 @@ export default function Home() {
 
     const [modal, SetModal] = useState<string | null>(null);
 
+    const activeSearch = (filter:string, sort:string) =>{
+        getFilteredIceCreams(page, filter, sort);
+    }
+
     return (
         <main className="home">
             <div className="container flex-column">
-                <Filters />
+                <Filters activeSearch={activeSearch} />
                 {iceCreams.length > 0 ? (
                     <ul className="iceCreams-list">
                         {iceCreams.map((element) => (

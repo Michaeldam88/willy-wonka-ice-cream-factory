@@ -1,7 +1,7 @@
 @import '~sass-reset';
 
 * {
-    font-family: 'Lato', sans-serif;    
+    font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -67,13 +67,19 @@ body {
 .home {
     padding: 1.5rem 0;
     position: relative;
-    top: 2rem;
+    top: 5rem;
 }
 
 .filters {
-    margin-top: 1rem;
-    height: 2.5rem;
+    z-index: 1;
+    position: fixed;
+    top: 3.16rem;
+    min-width: 340px;
+    width: calc(100% - 3rem);
+    height: 3rem;
+    padding-top: 0.7rem;
     color: #dc8449;
+    background-color: #f9f7f4;
     &__label {
         margin-right: 1.5rem;
     }
@@ -131,11 +137,11 @@ body {
         background-image: url(../public/assets/heartEmpty.png);
     }
 
-    &__discount {        
+    &__discount {
         font-weight: 600;
         font-size: 0.95rem;
         color: #e57d36;
-    }    
+    }
 
     &__bottom {
         width: 100%;
@@ -209,11 +215,10 @@ body {
     &__close {
         height: 1.8rem;
         width: 1.8rem;
-        color: #dc8449;        
+        color: #dc8449;
         background-color: #e6d8ca;
         border-radius: 1rem;
         font-weight: 600;
-        
     }
 
     &__title {
@@ -252,6 +257,10 @@ body {
         left: -0.5rem;
     }
 
+    &__price {
+        margin-bottom: 0;
+    }
+
     &__original-price {
         text-decoration: line-through;
     }
@@ -259,23 +268,6 @@ body {
     &__sale-price {
         margin-left: 0.5rem;
     }
-}
-
-footer {
-    padding: 1.5rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.5rem;
-    background-color: #e2a57c;
-    font-size: 0.9rem;
-    font-style: italic;
-    color: white;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    text-align: center;
-    min-width: 390px;
 }
 
 @media all and (min-width: 38rem) {
