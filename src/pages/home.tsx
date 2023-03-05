@@ -2,27 +2,21 @@ import { useEffect, useState } from 'react';
 import { DetailsModal } from '../components/details-modal/details-modal';
 import { Filters } from '../components/filters/filters';
 import { IceCreamCard } from '../components/iceCream-card/iceCream-card';
+import { Pagination } from '../components/pagination/pagination';
 import { useIceCreams } from '../hooks/use.iceCreams';
 
 export default function Home() {
-    const { getIceCreams, iceCreams, getFilteredIceCreams } = useIceCreams();
-
-    const [page, SetPage] = useState<number>(1);
+    const { getIceCreams, iceCreams, totPage, page, setPage } = useIceCreams();
 
     useEffect(() => {
-        getIceCreams(1);
-    }, [getIceCreams]);
+        window.scrollTo(0, 0);
+    }, [page]);
 
     const [modal, SetModal] = useState<string | null>(null);
-
-    const activeSearch = (filter:string, sort:string) =>{
-        getFilteredIceCreams(page, filter, sort);
-    }
-
     return (
         <main className="home">
             <div className="container flex-column">
-                <Filters activeSearch={activeSearch} />
+                <Filters getIceCreams={getIceCreams} />
                 {iceCreams.length > 0 ? (
                     <ul className="iceCreams-list">
                         {iceCreams.map((element) => (
@@ -36,6 +30,12 @@ export default function Home() {
                 ) : (
                     <p className="home__no-results">Sin resultados</p>
                 )}
+
+                <Pagination
+                    page={page}
+                    totPage={totPage}
+                    setPage={setPage}
+                ></Pagination>
 
                 {modal !== null ? (
                     <div className="modal">

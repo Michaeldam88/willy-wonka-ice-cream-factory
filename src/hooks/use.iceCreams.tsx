@@ -1,19 +1,16 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { IceCreamsApi } from '../services/iceCreamsApi';
 import { IceCreamStructure } from '../types/icecreamStructure';
 
 export type UseIceCreams = {
-    iceCreams: Array<IceCreamStructure>;    
+    iceCreams: Array<IceCreamStructure>;
     totItems: number;
     totPage: number;
+    page: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
     iceCreamDetails: Partial<IceCreamStructure>;
-    getIceCreams: (page: number) => Promise<void>;
-    getFilteredIceCreams: (
-        page: number,
-        filter: string,
-        sort: string
-    ) => Promise<void>;
-    getIceCreamsDetails: (id: string) => Promise<void>;    
+    getIceCreams: (page: number, filter: string, sort: string) => Promise<void>;
+    getIceCreamsDetails: (id: string) => Promise<void>;
 };
 
 export function useIceCreams(): UseIceCreams {
@@ -21,29 +18,24 @@ export function useIceCreams(): UseIceCreams {
 
     const [iceCreams, setIceCreams] = useState([]);
     const [iceCreamDetails, setIceCreamDetails] = useState({});    
+    const [page, setPage] = useState(1);
     const [totPage, setTotalPage] = useState(1);
     const [totItems, setTotalItems] = useState(0);
 
-    const getIceCreams = useCallback(
-        async (page: number) => {
-            try {
-                const response = await iceCreamsApi.getIceCreams(page);
-                setIceCreams(response.data);
-                setTotalItems(response.totalItems);
-                setTotalPage(response.totalPages);
-            } catch (error) {}
-        },
-        [iceCreamsApi]
-    );
+    const filter = useRef('');
+    const sort = useRef('');
 
-    const getFilteredIceCreams = useCallback(
-        async (page: number, filter:string,sort:string) => {
+    const getIceCreams = useCallback(
+        async (page: number, receivedFilter: string, receivedSort: string) => {
             try {
-                const response = await iceCreamsApi.getFilteredIceCreams(
+                filter.current= receivedFilter
+                sort.current = receivedSort;
+                const response = await iceCreamsApi.getIceCreams(
                     page,
-                    filter,
-                    sort
+                    receivedFilter,
+                    receivedSort
                 );
+                setPage(page);
                 setIceCreams(response.data);
                 setTotalItems(response.totalItems);
                 setTotalPage(response.totalPages);
@@ -62,15 +54,22 @@ export function useIceCreams(): UseIceCreams {
         [iceCreamsApi]
     );
 
+    useEffect(() => {
+        getIceCreams(page, filter.current, sort.current);  
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page]);
+
+
     
 
     return {
         getIceCreams,
-        getFilteredIceCreams,
         getIceCreamsDetails,
+        setPage,
         iceCreams,        
         totItems,
         totPage,
-        iceCreamDetails
+        iceCreamDetails,
+        page
     };
 }
