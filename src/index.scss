@@ -89,8 +89,7 @@ body {
     }
     &__filter {
         margin-left: 0.3rem;
-        color: #9e643c;
-        width: auto;
+        color: #9e643c;        
     }
 }
 
@@ -98,7 +97,6 @@ body {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 3rem;
     margin-right: -4%;
 }
 
@@ -168,6 +166,29 @@ body {
         margin-bottom: 0.8rem;
         font-size: 0.8rem;
         text-align: center;
+    }
+}
+
+.pagination {
+    display: flex;
+    align-self: center;
+    color: #9e643c;
+    font-size: 1.1rem;
+    padding: 0.3rem;
+    &__numbers {
+        margin: 0 0.5rem;
+    }
+    &__changePage {
+        font-weight: 600;
+        font-size: 1.3rem;
+        line-height: 1.1rem;
+        color: #dc8449;
+    }
+    &__changePage--disabled {
+        color: #d4b9a7;
+    }
+    &__changePage--disabled:hover {
+        cursor: auto;
     }
 }
 
