@@ -15,9 +15,9 @@ export function Filters() {
                     defaultValue="top-sale"
                     onChange={(e) => setSelectedSort(e.target.value)}
                 >
-                    <option value="top-sale">Top sale</option>
+                    <option value="">Top sale</option>
                     <option value="name">Name</option>
-                    <option value="low-price">Lower Price</option>
+                    <option value="price">Lower Price</option>
                 </select>
             </label>
 
@@ -30,9 +30,9 @@ export function Filters() {
                     defaultValue="all"
                     onChange={(e) => setSelectedFilter(e.target.value)}
                 >
-                    <option value="all">All</option>
+                    <option value="">All</option>
                     <option value="liked">Liked</option>
-                    <option value="on-sale">On sale</option>
+                    <option value="onSale=true">On sale</option>
                 </select>
             </label>
         </div>

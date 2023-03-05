@@ -8,9 +8,11 @@ export type UseIceCreams = {
     totItems: number;
     totPage: number;
     getIceCreams: (page: number) => Promise<void>;
-    getOnSaleProducts: (page: number) => Promise<void>;
-    sortByName: (page: number) => Promise<void>;
-    sortByPrice: (page: number) => Promise<void>;
+    getFilteredIceCreams: (
+        page: number,
+        filter: string,
+        sort: string
+    ) => Promise<void>;
     setPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -34,10 +36,14 @@ export function useIceCreams(): UseIceCreams {
         [iceCreamsApi]
     );
 
-    const getOnSaleProducts = useCallback(
-        async (page: number) => {
+    const getFilteredIceCreams = useCallback(
+        async (page: number, filter:string,sort:string) => {
             try {
-                const response = await iceCreamsApi.getOnSaleProducts(page);
+                const response = await iceCreamsApi.getFilteredIceCreams(
+                    page,
+                    filter,
+                    sort
+                );
                 setIceCreams(response.data);
                 setTotalItems(response.totalItems);
                 setTotalPage(response.totalPages);
@@ -46,36 +52,12 @@ export function useIceCreams(): UseIceCreams {
         [iceCreamsApi]
     );
 
-    const sortByName = useCallback(
-        async (page: number) => {
-            try {
-                const response = await iceCreamsApi.sortByName(page);
-                setIceCreams(response.data);
-                setTotalItems(response.totalItems);
-                setTotalPage(response.totalPages);
-            } catch (error) {}
-        },
-        [iceCreamsApi]
-    );
-
-    const sortByPrice = useCallback(
-        async (page: number) => {
-            try {
-                const response = await iceCreamsApi.sortByPrice(page);
-                setIceCreams(response.data);
-                setTotalItems(response.totalItems);
-                setTotalPage(response.totalPages);
-            } catch (error) {}
-        },
-        [iceCreamsApi]
-    );
+    
 
     return {
         getIceCreams,
-        getOnSaleProducts,
+        getFilteredIceCreams,
         setPage,
-        sortByName,
-        sortByPrice,
         iceCreams,
         page,
         totItems,

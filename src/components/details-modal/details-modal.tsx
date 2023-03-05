@@ -29,7 +29,10 @@ export function DetailsModal({
         },
     };
 
-    const liked = ['08c02278-892c-48b7-a6f7-d0101e330f5d'];
+    const liked = [
+        '05f5fe4d-7160-4f61-8139-dd34bf9dac1c',
+        '00cf7c9e-34b2-4b64-a4fa-287598d1a6a3',
+    ];
 
     const [details, setDetails] = useState<Partial<IceCreamStructure>>({});
 
