@@ -1,4 +1,4 @@
-export interface IcecreamStructure {
+export interface IceCreamStructure {
     id: string;
     colors: string[];
     description: string;
