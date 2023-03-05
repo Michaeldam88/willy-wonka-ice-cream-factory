@@ -1,8 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function Filters() {
-    const [selectedSort, setSelectedSort] = useState('top-sale');
-    const [selectedFilter, setSelectedFilter] = useState('all');
+export function Filters({
+    activeSearch,
+}: {
+    activeSearch: (filter: string, sort: string) => void;
+}) {
+    const [selectedSort, setSelectedSort] = useState('');
+    const [selectedFilter, setSelectedFilter] = useState('');
+
+    useEffect(() => {
+        activeSearch(selectedFilter, selectedSort);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedSort, selectedFilter]);
 
     return (
         <div className="filters">

@@ -3,24 +3,24 @@ import { IceCreamsApi } from '../services/iceCreamsApi';
 import { IceCreamStructure } from '../types/icecreamStructure';
 
 export type UseIceCreams = {
-    iceCreams: Array<IceCreamStructure>;
-    page: number;
+    iceCreams: Array<IceCreamStructure>;    
     totItems: number;
     totPage: number;
+    iceCreamDetails: Partial<IceCreamStructure>;
     getIceCreams: (page: number) => Promise<void>;
     getFilteredIceCreams: (
         page: number,
         filter: string,
         sort: string
     ) => Promise<void>;
-    setPage: React.Dispatch<React.SetStateAction<number>>;
+    getIceCreamsDetails: (id: string) => Promise<void>;    
 };
 
 export function useIceCreams(): UseIceCreams {
     const iceCreamsApi = useMemo(() => new IceCreamsApi(), []);
 
     const [iceCreams, setIceCreams] = useState([]);
-    const [page, setPage] = useState(1);
+    const [iceCreamDetails, setIceCreamDetails] = useState({});    
     const [totPage, setTotalPage] = useState(1);
     const [totItems, setTotalItems] = useState(0);
 
@@ -52,15 +52,25 @@ export function useIceCreams(): UseIceCreams {
         [iceCreamsApi]
     );
 
+    const getIceCreamsDetails = useCallback(
+        async (id: string) => {
+            try {
+                const response = await iceCreamsApi.getIceCreamsDetails(id);
+                setIceCreamDetails(response);                
+            } catch (error) {}
+        },
+        [iceCreamsApi]
+    );
+
     
 
     return {
         getIceCreams,
         getFilteredIceCreams,
-        setPage,
-        iceCreams,
-        page,
+        getIceCreamsDetails,
+        iceCreams,        
         totItems,
         totPage,
+        iceCreamDetails
     };
 }

@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { IceCreamStructure } from '../../types/icecreamStructure';
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useIceCreams } from '../../hooks/use.iceCreams';
 
 export function DetailsModal({
     id,
@@ -8,38 +8,16 @@ export function DetailsModal({
     id: string;
     closeModal: Dispatch<SetStateAction<string | null>>;
 }) {
-    const mock = {
-        id: '08c02278-892c-48b7-a6f7-d0101e330f5d',
-        colors: ['#F5DEB3', '#8B4513'],
-        description:
-            "Get ready for a cookie dough lover's dream with our Cookie Dough Craze ice cream, made with creamy vanilla ice cream, chunks of cookie dough, and loads of chocolate chips. It's a classic combination that will never go out of style. Try it now!",
-        ingredients: [
-            'vanilla ice cream',
-            'chunks of cookie dough',
-            'chocolate chips',
-        ],
-        name: 'Cookie Dough Craze',
-        image: '/public/images/ice-3.png',
-        size: 'large',
-        price: '3.75€',
-        onSale: {
-            isOnSale: true,
-            discount: 0.4,
-            finalPrice: '2.25€',
-        },
-    };
+    const { getIceCreamsDetails, iceCreamDetails } = useIceCreams();
 
     const liked = [
         '05f5fe4d-7160-4f61-8139-dd34bf9dac1c',
         '00cf7c9e-34b2-4b64-a4fa-287598d1a6a3',
     ];
 
-    const [details, setDetails] = useState<Partial<IceCreamStructure>>({});
-
     useEffect(() => {
-        setDetails(mock);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        getIceCreamsDetails(id);        
+    }, [getIceCreamsDetails, id]);
 
     const handleClickRemoveLiked = () => {
         //
@@ -48,13 +26,13 @@ export function DetailsModal({
     const handleClickAddLiked = () => {
         //
     };
-
+    
     return (
         <div className="details-modal">
             <div className="details-modal__top">
-                <h2 className="details-modal__title">{details.name}</h2>
+                <h2 className="details-modal__title">{iceCreamDetails.name}</h2>
 
-                {liked.some((element) => element === details.id) ? (
+                {liked.some((element) => element === iceCreamDetails.id) ? (
                     <button
                         className="iceCream-card__liked details-modal__like"
                         onClick={() => handleClickRemoveLiked()}
@@ -70,7 +48,6 @@ export function DetailsModal({
                     className="details-modal__close"
                     onClick={() => {
                         closeModal(null);
-                        setDetails({});
                     }}
                 >
                     X
@@ -79,19 +56,21 @@ export function DetailsModal({
             <img
                 className="details-modal__img"
                 src={
-                    details.image
-                        ? `https://heytrade-ice-creams.herokuapp.com${details.image}`
+                    iceCreamDetails.image
+                        ? `https://heytrade-ice-creams.herokuapp.com${iceCreamDetails.image}`
                         : ''
                 }
-                alt={details.name}
+                alt={iceCreamDetails.name}
             />
 
             <h3>Description</h3>
-            <p className="details-modal__description">{details.description}</p>
+            <p className="details-modal__description">
+                {iceCreamDetails.description}
+            </p>
 
             <h3>Ingredients</h3>
             <ul className="details-modal__ingredients-list">
-                {details.ingredients?.map((element) => (
+                {iceCreamDetails.ingredients?.map((element) => (
                     <li key={element} className="details-modal__ingredient">
                         <span className="details-modal__ingredient-span">
                             {element}
@@ -100,19 +79,23 @@ export function DetailsModal({
                 ))}
             </ul>
 
-            {details && details.onSale && details.onSale.isOnSale ? (
+            {iceCreamDetails &&
+            iceCreamDetails.onSale &&
+            iceCreamDetails.onSale.isOnSale ? (
                 <div>
-                    <h3>On sale -{details.onSale.discount * 100}%</h3>
+                    <h3>On sale -{iceCreamDetails.onSale.discount * 100}%</h3>
 
                     <span className="details-modal__original-price">
-                        {details.price}
+                        {iceCreamDetails.price}
                     </span>
                     <span className="details-modal__sale-price">
-                        {details.onSale.finalPrice}
+                        {iceCreamDetails.onSale.finalPrice}
                     </span>
                 </div>
             ) : (
-                <p className="details-modal__price">Price: {details.price}</p>
+                <p className="details-modal__price">
+                    Price: {iceCreamDetails.price}
+                </p>
             )}
         </div>
     );
