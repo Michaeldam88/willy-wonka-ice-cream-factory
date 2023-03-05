@@ -16,7 +16,7 @@ export function DetailsModal({
     ];
 
     useEffect(() => {
-        getIceCreamsDetails(id);        
+        getIceCreamsDetails(id);
     }, [getIceCreamsDetails, id]);
 
     const handleClickRemoveLiked = () => {
@@ -26,7 +26,7 @@ export function DetailsModal({
     const handleClickAddLiked = () => {
         //
     };
-    
+
     return (
         <div className="details-modal">
             <div className="details-modal__top">
@@ -72,9 +72,7 @@ export function DetailsModal({
             <ul className="details-modal__ingredients-list">
                 {iceCreamDetails.ingredients?.map((element) => (
                     <li key={element} className="details-modal__ingredient">
-                        <span className="details-modal__ingredient-span">
-                            {element}
-                        </span>
+                        {element}
                     </li>
                 ))}
             </ul>
