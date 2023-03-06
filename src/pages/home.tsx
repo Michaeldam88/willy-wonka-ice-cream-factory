@@ -12,7 +12,7 @@ export default function Home() {
         window.scrollTo(0, 0);
     }, [page]);
 
-    const [modal, SetModal] = useState<string | null>(null);
+    const [modal, setModal] = useState<string | null>(null);
     const [liked, setLiked] = useState<string[]>([]);
 
     return (
@@ -25,7 +25,7 @@ export default function Home() {
                             <IceCreamCard
                                 key={element.id}
                                 iceCream={element}
-                                openModal={SetModal}
+                                openModal={setModal}
                                 liked={liked}
                                 setLiked={setLiked}
                             />
@@ -45,7 +45,7 @@ export default function Home() {
                     <div className="modal">
                         <DetailsModal
                             id={modal}
-                            closeModal={SetModal}
+                            closeModal={setModal}
                             liked={liked}
                             setLiked={setLiked}
                         ></DetailsModal>

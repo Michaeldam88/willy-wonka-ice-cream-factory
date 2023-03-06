@@ -70,12 +70,12 @@ export function DetailsModal({
                 alt={iceCreamDetails.name}
             />
 
-            <h3>Description</h3>
+            <h3 className="details-modal__sub-title">Description</h3>
             <p className="details-modal__description">
                 {iceCreamDetails.description}
             </p>
 
-            <h3>Ingredients</h3>
+            <h3 className="details-modal__sub-title">Ingredients</h3>
             <ul className="details-modal__ingredients-list">
                 {iceCreamDetails.ingredients?.map((element) => (
                     <li key={element} className="details-modal__ingredient">
@@ -88,7 +88,9 @@ export function DetailsModal({
             iceCreamDetails.onSale &&
             iceCreamDetails.onSale.isOnSale ? (
                 <div>
-                    <h3>On sale -{iceCreamDetails.onSale.discount * 100}%</h3>
+                    <h3 className="details-modal__sub-title">
+                        On sale -{iceCreamDetails.onSale.discount * 100}%
+                    </h3>
 
                     <span className="details-modal__original-price">
                         {iceCreamDetails.price}
