@@ -68,6 +68,13 @@ body {
     padding: 1.5rem 0;
     position: relative;
     top: 5rem;
+    &__no-results {
+        font-size: 1.5rem;
+        height: 300px;
+        width: 100%;
+        text-align: center;
+        padding-top: 5rem;
+    }
 }
 
 .filters {
@@ -173,6 +180,7 @@ body {
     }
 }
 
+
 .pagination {
     display: flex;
     align-items: center;
@@ -264,7 +272,7 @@ body {
         align-self: center;
     }
 
-    h3 {
+    &__sub-title {
         margin-top: 0.5rem;
         margin-bottom: 0.6rem;
         color: #dc8449;

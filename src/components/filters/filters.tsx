@@ -25,7 +25,9 @@ export function Filters({
                     onChange={(e) => setSelectedFilter(e.target.value)}
                 >
                     <option value="">All</option>
-                    <option value="liked">Liked</option>
+                    <option value="size=large">Big</option>
+                    <option value="size=medium">Medium</option>
+                    <option value="size=small">Small</option>
                     <option value="onSale=true">On sale</option>
                 </select>
             </label>
