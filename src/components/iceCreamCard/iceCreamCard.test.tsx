@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mockIceCream1, mockIceCream2 } from '../../mocks/testing.hookMock';
-import { IceCreamCard } from './iceCream-card';
+import { IceCreamCard } from './iceCreamCard';
 
 describe('Given a detail-modal component', () => {
     const setModal = jest.fn();

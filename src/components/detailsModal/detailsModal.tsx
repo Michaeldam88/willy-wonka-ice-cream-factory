@@ -1,19 +1,21 @@
-import { Dispatch, SetStateAction, useEffect} from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useIceCreams } from '../../hooks/use.iceCreams';
 import { useLocalStorage } from '../../hooks/use.LocalStorage';
+import { Spinner } from '../spinner/spinner';
 
 export function DetailsModal({
     id,
     closeModal,
     liked,
-    setLiked,
+    setLiked,    
 }: {
     id: string;
     closeModal: Dispatch<SetStateAction<string | null>>;
     liked: string[];
-    setLiked: React.Dispatch<React.SetStateAction<string[]>>;
+    setLiked: React.Dispatch<React.SetStateAction<string[]>>;    
 }) {
-    const { getIceCreamsDetails, iceCreamDetails } = useIceCreams();
+    const { getIceCreamsDetails, iceCreamDetails, loadingDetails } =
+        useIceCreams();
     const { setItem } = useLocalStorage();
 
     useEffect(() => {
@@ -33,6 +35,10 @@ export function DetailsModal({
         setLiked(newList);
         setItem('liked', JSON.stringify(liked));
     };
+    
+    if (loadingDetails) {
+        return <div className="details-modal"> <Spinner/> </div>;
+    }
 
     return (
         <div className="details-modal">
