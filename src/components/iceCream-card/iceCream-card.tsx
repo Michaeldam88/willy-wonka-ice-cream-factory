@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect} from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useLocalStorage } from '../../hooks/use.LocalStorage';
 import { IceCreamStructure } from '../../types/icecreamStructure';
 
@@ -78,9 +78,7 @@ export function IceCreamCard({
             <div
                 className="iceCream-card__bottom"
                 onClick={() => {
-                    if (iceCream.id) {
-                        openModal(iceCream.id);
-                    }
+                    openModal(iceCream.id);
                 }}
             >
                 <h4 className="iceCream-card__title">{iceCream.name}</h4>
