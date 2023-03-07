@@ -1,4 +1,4 @@
-import Home from '../../pages/home';
+import {Home} from '../../pages/home';
 import { Header } from '../header/header';
 
 export function Layout() {

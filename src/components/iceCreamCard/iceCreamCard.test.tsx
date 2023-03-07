@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mockIceCream1, mockIceCream2 } from '../../mocks/testing.hookMock';
-import { IceCreamCard } from './iceCream-card';
+import { IceCreamCard } from './iceCreamCard';
 
 describe('Given a detail-modal component', () => {
     const setModal = jest.fn();
     const setLiked = jest.fn();
     const element = mockIceCream1;
-    const liked = ['testID'];
+    const liked = [mockIceCream1];
 
     beforeEach(() => {
         render(
@@ -56,7 +56,7 @@ describe('Given a detail-modal component with other deteils', () => {
     const setModal = jest.fn();
     const setLiked = jest.fn();
     const element = mockIceCream2;
-    const liked = ['testID'];
+    const liked = [mockIceCream1];
 
     beforeEach(() => {
         render(

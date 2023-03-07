@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mockIceCream1, mockIceCream2 } from '../../mocks/testing.hookMock';
-import { DetailsModal } from './details-modal';
+import { DetailsModal } from './detailsModal';
 
 jest.mock('../../hooks/use.iceCreams', () => ({
     useIceCreams: () => ({
@@ -14,7 +14,7 @@ describe('Given a detail-modal component', () => {
     const setModal = jest.fn();
     const setLiked = jest.fn();
     const id = 'testID';
-    const liked = ['testID', "testID2"];
+    const liked = [mockIceCream1];
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -37,10 +37,8 @@ describe('Given a detail-modal component', () => {
 
     describe('When we click on close button', () => {
         test('Then the setModal function should have been called', () => {
-            const closeBtn = screen.getByRole('button', {
-                name: 'X',
-            });
-            userEvent.click(closeBtn);
+            const closeBtn = screen.getAllByRole('button');
+            userEvent.click(closeBtn[1]);
             expect(setModal).toHaveBeenCalled();
         });
     });
@@ -65,7 +63,7 @@ describe('Given a detail-modal component with different details', () => {
     const setModal = jest.fn();
     const setLiked = jest.fn();
     const id = 'testID';
-    const liked = ['testID'];
+    const liked = [mockIceCream1];
 
     beforeEach(() => {
         render(
@@ -76,8 +74,7 @@ describe('Given a detail-modal component with different details', () => {
                 setLiked={setLiked}
             />
         );
-    }); 
-    
+    });
 
     describe('When we have modal with the liked logo on false and we click on like/dislike button', () => {
         test('Then the setLiked function should have been called', () => {

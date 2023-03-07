@@ -10,8 +10,8 @@ export function IceCreamCard({
 }: {
     iceCream: IceCreamStructure;
     openModal: Dispatch<SetStateAction<string | null>>;
-    liked: string[];
-    setLiked: React.Dispatch<React.SetStateAction<string[]>>;
+    liked: IceCreamStructure[];
+    setLiked: React.Dispatch<React.SetStateAction<IceCreamStructure[]>>;
 }) {
     const { setItem, getItem } = useLocalStorage();
 
@@ -22,19 +22,19 @@ export function IceCreamCard({
     }, []);
 
     const handleClickRemoveLiked = () => {
-        const newList = liked.filter((element) => element !== iceCream.id);
+        const newList = liked.filter((element) => element.id !== iceCream.id);
         setItem('liked', JSON.stringify(newList));
         setLiked(newList);
     };
 
-    const handleClickAddLiked = () => {
+    const handleClickAddLiked = () => {       
         const newList = liked;
-        newList.push(iceCream.id);
+        newList.push(iceCream);
         setLiked(newList);
         setItem('liked', JSON.stringify(liked));
     };
 
-    const availability = iceCream.onSale.isOnSale
+    const price = iceCream.onSale.isOnSale
         ? iceCream.onSale.finalPrice
         : iceCream.price;
 
@@ -62,7 +62,7 @@ export function IceCreamCard({
                     </span>
                 ) : null}
 
-                {liked.some((element) => element === iceCream.id) ? (
+                {liked.some((element) => element.id === iceCream.id) ? (
                     <button
                         className="iceCream-card__liked"
                         onClick={() => handleClickRemoveLiked()}
@@ -82,7 +82,7 @@ export function IceCreamCard({
                 }}
             >
                 <h4 className="iceCream-card__title">{iceCream.name}</h4>
-                <h2 className="iceCream-card__availability">{availability}</h2>
+                <h2 className="iceCream-card__availability">{`${price}€`}</h2>
             </div>
         </li>
     );

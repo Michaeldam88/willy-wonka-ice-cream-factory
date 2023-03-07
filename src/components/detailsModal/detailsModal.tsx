@@ -1,6 +1,8 @@
-import { Dispatch, SetStateAction, useEffect} from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useIceCreams } from '../../hooks/use.iceCreams';
 import { useLocalStorage } from '../../hooks/use.LocalStorage';
+import { IceCreamStructure } from '../../types/icecreamStructure';
+import { Spinner } from '../spinner/spinner';
 
 export function DetailsModal({
     id,
@@ -10,10 +12,11 @@ export function DetailsModal({
 }: {
     id: string;
     closeModal: Dispatch<SetStateAction<string | null>>;
-    liked: string[];
-    setLiked: React.Dispatch<React.SetStateAction<string[]>>;
+    liked: IceCreamStructure[];
+    setLiked: React.Dispatch<React.SetStateAction<IceCreamStructure[]>>;
 }) {
-    const { getIceCreamsDetails, iceCreamDetails } = useIceCreams();
+    const { getIceCreamsDetails, iceCreamDetails, loadingDetails } =
+        useIceCreams();
     const { setItem } = useLocalStorage();
 
     useEffect(() => {
@@ -22,24 +25,33 @@ export function DetailsModal({
     }, []);
 
     const handleClickRemoveLiked = () => {
-        const newList = liked.filter((element) => element !== id);
+        const newList = liked.filter((element) => element.id !== id);
         setItem('liked', JSON.stringify(newList));
         setLiked(newList);
     };
 
     const handleClickAddLiked = () => {
         const newList = liked;
-        newList.push(id);
+        newList.push(iceCreamDetails);
         setLiked(newList);
         setItem('liked', JSON.stringify(liked));
     };
+
+    if (loadingDetails) {
+        return (
+            <div className="details-modal">
+                {' '}
+                <Spinner />{' '}
+            </div>
+        );
+    }
 
     return (
         <div className="details-modal">
             <div className="details-modal__top">
                 <h2 className="details-modal__title">{iceCreamDetails.name}</h2>
 
-                {liked.some((element) => element === iceCreamDetails.id) ? (
+                {liked.some((element) => element.id === iceCreamDetails.id) ? (
                     <button
                         className="iceCream-card__liked details-modal__like"
                         onClick={() => handleClickRemoveLiked()}
@@ -57,7 +69,7 @@ export function DetailsModal({
                         closeModal(null);
                     }}
                 >
-                    X
+                    <i role="button" className="fa-solid fa-x"></i>
                 </button>
             </div>
             <img
@@ -93,15 +105,15 @@ export function DetailsModal({
                     </h3>
 
                     <span className="details-modal__original-price">
-                        {iceCreamDetails.price}
+                        {`${iceCreamDetails.price}€`}
                     </span>
                     <span className="details-modal__sale-price">
-                        {iceCreamDetails.onSale.finalPrice}
+                        {`${iceCreamDetails.onSale.finalPrice}€`}
                     </span>
                 </div>
             ) : (
                 <p className="details-modal__price">
-                    Price: {iceCreamDetails.price}
+                    Price: {`${iceCreamDetails.price}€`}
                 </p>
             )}
         </div>

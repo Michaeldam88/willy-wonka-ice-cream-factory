@@ -1,25 +1,31 @@
 import { useEffect, useState } from 'react';
-import { DetailsModal } from '../components/details-modal/details-modal';
+import { DetailsModal } from '../components/detailsModal/detailsModal';
 import { Filters } from '../components/filters/filters';
-import { IceCreamCard } from '../components/iceCream-card/iceCream-card';
+import { IceCreamCard } from '../components/iceCreamCard/iceCreamCard';
 import { Pagination } from '../components/pagination/pagination';
+import { Spinner } from '../components/spinner/spinner';
 import { useIceCreams } from '../hooks/use.iceCreams';
+import { IceCreamStructure } from '../types/icecreamStructure';
 
-export default function Home() {
-    const { getIceCreams, iceCreams, totPage, page, setPage } = useIceCreams();
+export function Home() {
+    const { getIceCreams, iceCreams, totPage, page, setPage, loadingPage } =
+        useIceCreams();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [page]);
 
     const [modal, setModal] = useState<string | null>(null);
-    const [liked, setLiked] = useState<string[]>([]);
+    const [liked, setLiked] = useState<IceCreamStructure[]>([]);
 
     return (
         <main className="home">
             <div className="container flex-column">
                 <Filters getIceCreams={getIceCreams} />
-                {iceCreams.length > 0 ? (
+
+                {loadingPage ? (
+                    <Spinner />
+                ) : (
                     <ul className="iceCreams-list">
                         {iceCreams.map((element) => (
                             <IceCreamCard
@@ -31,17 +37,21 @@ export default function Home() {
                             />
                         ))}
                     </ul>
-                ) : (
+                )}
+
+                {!loadingPage && iceCreams.length === 0 && (
                     <p className="home__no-results">Sin resultados</p>
                 )}
 
-                <Pagination
-                    page={page}
-                    totPage={totPage}
-                    setPage={setPage}
-                ></Pagination>
+                {!loadingPage ? (
+                    <Pagination
+                        page={page}
+                        totPage={totPage}
+                        setPage={setPage}
+                    ></Pagination>
+                ) : null}
 
-                {modal !== null ? (
+                {modal ? (
                     <div className="modal">
                         <DetailsModal
                             id={modal}
