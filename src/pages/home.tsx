@@ -5,6 +5,7 @@ import { IceCreamCard } from '../components/iceCreamCard/iceCreamCard';
 import { Pagination } from '../components/pagination/pagination';
 import { Spinner } from '../components/spinner/spinner';
 import { useIceCreams } from '../hooks/use.iceCreams';
+import { IceCreamStructure } from '../types/icecreamStructure';
 
 export function Home() {
     const { getIceCreams, iceCreams, totPage, page, setPage, loadingPage } =
@@ -15,7 +16,7 @@ export function Home() {
     }, [page]);
 
     const [modal, setModal] = useState<string | null>(null);
-    const [liked, setLiked] = useState<string[]>([]);
+    const [liked, setLiked] = useState<IceCreamStructure[]>([]);
 
     return (
         <main className="home">

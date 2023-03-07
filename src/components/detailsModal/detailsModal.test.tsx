@@ -14,7 +14,7 @@ describe('Given a detail-modal component', () => {
     const setModal = jest.fn();
     const setLiked = jest.fn();
     const id = 'testID';
-    const liked = ['testID', 'testID2'];
+    const liked = [mockIceCream1];
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -65,7 +65,7 @@ describe('Given a detail-modal component with different details', () => {
     const setModal = jest.fn();
     const setLiked = jest.fn();
     const id = 'testID';
-    const liked = ['testID'];
+    const liked = [mockIceCream1];
 
     beforeEach(() => {
         render(

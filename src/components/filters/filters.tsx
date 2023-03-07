@@ -28,24 +28,26 @@ export function Filters({
                     <option value="size=large">Big</option>
                     <option value="size=medium">Medium</option>
                     <option value="size=small">Small</option>
+                    <option value="liked">Liked</option>
                     <option value="onSale=true">On sale</option>
                 </select>
             </label>
-
-            <label className="filters__label">
-                Sort By:
-                <select
-                    className="filters__sort"
-                    name="order"
-                    id="order"
-                    defaultValue="top-sale"
-                    onChange={(e) => setSelectedSort(e.target.value)}
-                >
-                    <option value="">Top sale</option>
-                    <option value="name">Name</option>
-                    <option value="price">Lower Price</option>
-                </select>
-            </label>
+            {selectedFilter === 'liked' ? null : (
+                <label className="filters__label">
+                    Sort By:
+                    <select
+                        className="filters__sort"
+                        name="order"
+                        id="order"
+                        defaultValue="top-sale"
+                        onChange={(e) => setSelectedSort(e.target.value)}
+                    >
+                        <option value="">Top sale</option>
+                        <option value="name">Name</option>
+                        <option value="price">Lower Price</option>
+                    </select>
+                </label>
+            )}
         </div>
     );
 }
