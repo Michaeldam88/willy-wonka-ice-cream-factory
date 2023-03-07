@@ -34,7 +34,7 @@ export function IceCreamCard({
         setItem('liked', JSON.stringify(liked));
     };
 
-    const availability = iceCream.onSale.isOnSale
+    const price = iceCream.onSale.isOnSale
         ? iceCream.onSale.finalPrice
         : iceCream.price;
 
@@ -82,7 +82,7 @@ export function IceCreamCard({
                 }}
             >
                 <h4 className="iceCream-card__title">{iceCream.name}</h4>
-                <h2 className="iceCream-card__availability">{availability}</h2>
+                <h2 className="iceCream-card__availability">{`${price}€`}</h2>
             </div>
         </li>
     );

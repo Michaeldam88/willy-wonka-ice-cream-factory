@@ -37,10 +37,8 @@ describe('Given a detail-modal component', () => {
 
     describe('When we click on close button', () => {
         test('Then the setModal function should have been called', () => {
-            const closeBtn = screen.getByRole('button', {
-                name: 'X',
-            });
-            userEvent.click(closeBtn);
+            const closeBtn = screen.getAllByRole('button');
+            userEvent.click(closeBtn[1]);
             expect(setModal).toHaveBeenCalled();
         });
     });

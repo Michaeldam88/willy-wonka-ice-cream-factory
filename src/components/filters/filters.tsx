@@ -44,7 +44,8 @@ export function Filters({
                     >
                         <option value="">Top sale</option>
                         <option value="name">Name</option>
-                        <option value="price">Lower Price</option>
+                        <option value="price&_order=asc">Lower Price</option>
+                        <option value="price&_order=desc">Higher Price</option>
                     </select>
                 </label>
             )}

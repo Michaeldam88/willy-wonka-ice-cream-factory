@@ -69,7 +69,7 @@ export function DetailsModal({
                         closeModal(null);
                     }}
                 >
-                    <i className="fa-solid fa-x"></i>
+                    <i role="button" className="fa-solid fa-x"></i>
                 </button>
             </div>
             <img
@@ -105,15 +105,15 @@ export function DetailsModal({
                     </h3>
 
                     <span className="details-modal__original-price">
-                        {iceCreamDetails.price}
+                        {`${iceCreamDetails.price}€`}
                     </span>
                     <span className="details-modal__sale-price">
-                        {iceCreamDetails.onSale.finalPrice}
+                        {`${iceCreamDetails.onSale.finalPrice}€`}
                     </span>
                 </div>
             ) : (
                 <p className="details-modal__price">
-                    Price: {iceCreamDetails.price}
+                    Price: {`${iceCreamDetails.price}€`}
                 </p>
             )}
         </div>
