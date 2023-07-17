@@ -76,7 +76,7 @@ export function DetailsModal({
                 className="details-modal__img"
                 src={
                     iceCreamDetails.image
-                        ? `https://heytrade-ice-creams.herokuapp.com${iceCreamDetails.image}`
+                        ? `https://heytrade-ice-creams-427b4c9211ca.herokuapp.com${iceCreamDetails.image}`
                         : ''
                 }
                 alt={iceCreamDetails.name}

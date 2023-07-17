@@ -49,7 +49,7 @@ export function IceCreamCard({
                 }}
                 src={
                     iceCream.image
-                        ? `https://heytrade-ice-creams.herokuapp.com${iceCream.image}`
+                        ? `https://heytrade-ice-creams-427b4c9211ca.herokuapp.com${iceCream.image}`
                         : ''
                 }
                 alt={iceCream.name}
